@@ -30,6 +30,7 @@ module.exports = {
     'import/order': [1, { 'newlines-between': 'always-and-inside-groups' }],
 
     '@typescript-eslint/no-namespace': 0,
+    '@typescript-eslint/no-empty-interface': 0,
 
     'react/jsx-filename-extension': [
       1,

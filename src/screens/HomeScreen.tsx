@@ -1,20 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'native-base';
 
 import { RootStackScreenProps } from '../navigation/types';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-});
-
 export default function HomeScreen({ navigation }: RootStackScreenProps<'Root'>) {
   return (
-    <View style={styles.container}>
-      <Text>Home works!</Text>
+    <View alignItems="center" justifyContent="center">
+      <Text>Home screen wih NativeBase!</Text>
     </View>
   );
 }

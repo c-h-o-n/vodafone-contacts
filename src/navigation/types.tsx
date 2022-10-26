@@ -6,10 +6,10 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-// to make useNavigation, Link typesafe
+// to make useNavigation() or <Link /> typesafe
 declare global {
   namespace ReactNavigation {
-    type RootParamLists = RootStackParamList;
+    interface RootParamLists extends RootStackParamList {}
   }
 }
 
