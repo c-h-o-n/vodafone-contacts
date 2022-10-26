@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     jest: true,
+    'react-native/react-native': true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -18,11 +19,15 @@ module.exports = {
     'airbnb/hooks',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
+    'universe/native',
+    'universe/shared/typescript-analysis',
+    'plugin:react-native/all',
     'plugin:prettier/recommended',
   ],
   rules: {
     'no-console': 0,
-    'import/extensions': ['error', 'never'],
+    // 'import/extensions': ['error', 'never'],
+    'import/order': [1, { 'newlines-between': 'always-and-inside-groups' }],
 
     '@typescript-eslint/no-namespace': 0,
 
@@ -44,6 +49,8 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react-hooks/exhaustive-deps': 1,
     'react/jsx-curly-brace-presence': 0,
+
+    'react-native/sort-styles': 0,
 
     'prettier/prettier': 1,
   },

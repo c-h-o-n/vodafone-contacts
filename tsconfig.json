@@ -4,5 +4,5 @@
     "strict": true
   },
 
-  "include": ["src", ".eslintrc.js", "babel.config.js", "index.js"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", ".eslintrc.js", "babel.config.js", "index.js"]
 }
