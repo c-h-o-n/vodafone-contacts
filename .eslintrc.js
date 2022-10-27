@@ -50,8 +50,10 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react-hooks/exhaustive-deps': 1,
     'react/jsx-curly-brace-presence': 0,
+    'react/no-unescaped-entities': 0,
 
     'react-native/sort-styles': 0,
+    'react-native/no-raw-text': 0,
 
     'prettier/prettier': 1,
   },

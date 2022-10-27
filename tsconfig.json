@@ -1,8 +1,8 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
   },
 
-  "include": ["src/**/*.ts", "src/**/*.tsx", ".eslintrc.js", "babel.config.js", "index.js"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", ".eslintrc.js", "babel.config.js", "index.js", "metro.config.js"]
 }
