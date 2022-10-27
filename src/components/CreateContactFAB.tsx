@@ -3,7 +3,7 @@ import { Entypo } from '@expo/vector-icons';
 
 import { useNavigation } from '@react-navigation/native';
 
-export default function AddContactFabButton() {
+export default function CreateContactFAB() {
   const navigation = useNavigation();
   return (
     <Fab

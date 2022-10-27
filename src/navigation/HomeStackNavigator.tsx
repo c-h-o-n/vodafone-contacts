@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Box } from 'native-base';
 
-import AddContactFabButton from '../components/AddContactFabButton';
+import CreateContactFAB from '../components/CreateContactFAB';
 
 // screens
 import ContactDetailsScreen from '../screens/ContactDetailsScreen';
@@ -21,7 +21,7 @@ export default function HomeStackNavigator() {
         <Stack.Screen name="EditContact" component={EditContactScreen} />
       </Stack.Navigator>
       <Box position={'absolute'} bottom={10} right={4}>
-        <AddContactFabButton />
+        <CreateContactFAB />
       </Box>
     </>
   );
