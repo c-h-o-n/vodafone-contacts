@@ -20,7 +20,7 @@ export default function ContactCard({ contact }: ContactCardProps) {
         <Text fontWeight={'bold'}>
           {contact.name.first},{contact.name.last}
         </Text>
-        <Text>{contact.email}loremwpeepawerokrd</Text>
+        <Text>{contact.email}</Text>
         <Text>{contact.phone}</Text>
       </Box>
     </HStack>
