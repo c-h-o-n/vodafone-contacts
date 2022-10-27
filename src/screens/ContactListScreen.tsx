@@ -34,6 +34,7 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
     setSortByInitial(letter);
   };
 
+  // TODO loading spinner
   if (isLoading) {
     return (
       <View>
@@ -43,7 +44,7 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
       </View>
     );
   }
-
+// TODO error message
   if (isError) {
     return (
       <View>

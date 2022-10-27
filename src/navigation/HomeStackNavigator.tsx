@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AspectRatio, Box, Text, View } from 'native-base';
+import { Box, Text, View } from 'native-base';
 
 import AddNewContactFAB from '../components/AddNewContactFAB';
 
@@ -23,7 +23,9 @@ export default function HomeStackNavigator() {
       <Box position={'absolute'} bottom={10} right={4}>
         <AddNewContactFAB />
       </Box>
-      <Text fontWeight={'bold'} textAlign={'center'} mb={6}>All Rights Reserved _VOIS 2022</Text>
+      <Text fontWeight={'bold'} textAlign={'center'} mb={6}>
+        All Rights Reserved _VOIS 2022
+      </Text>
     </View>
   );
 }

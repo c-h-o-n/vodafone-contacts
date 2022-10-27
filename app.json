@@ -1,8 +1,9 @@
 {
   "expo": {
     "name": "vodafone-contacts",
+    "owner": "Chon76",
     "slug": "vodafone-contacts",
-    "version": "0.3.0",
+    "version": "0.4.0",
     "orientation": "default",
     "icon": "./src/assets/images/icon.png",
     "scheme": "myapp",

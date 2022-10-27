@@ -1,10 +1,13 @@
-import { Link } from '@react-navigation/native';
-import { Box, Button, Center, Heading, HStack, Image, Text, View, VStack } from 'native-base';
+import { Button, Heading, HStack, Image, Text, View, VStack } from 'native-base';
 
 import { HomeStackScreenProps } from '../navigation/types';
 
-export default function ContactDetailsScreen({ route, navigation }: HomeStackScreenProps<'ContactDetails'>) {
-  const { contact } = route.params;
+export default function ContactDetailsScreen({
+  route: {
+    params: { contact, id },
+  },
+  navigation,
+}: HomeStackScreenProps<'ContactDetails'>) {
   return (
     <View>
       <VStack alignItems={'center'} space={12}>
@@ -39,7 +42,7 @@ export default function ContactDetailsScreen({ route, navigation }: HomeStackScr
             variant={'outline'}
             borderColor={'red.400'}
             colorScheme={'red'}
-            onPress={() => navigation.navigate('EditContact')}>
+            onPress={() => console.log('delete by id => replace nav to contact list')}>
             Delete
           </Button>
 
@@ -47,7 +50,7 @@ export default function ContactDetailsScreen({ route, navigation }: HomeStackScr
             variant={'outline'}
             borderColor={'black'}
             colorScheme={'black'}
-            onPress={() => console.log('nav to edit')}>
+            onPress={() => navigation.navigate('EditContact', { contact })}>
             Edit
           </Button>
         </HStack>

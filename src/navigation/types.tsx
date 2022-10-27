@@ -24,7 +24,7 @@ export type RootStackParamList = {
 export type HomeStackParamList = {
   Contacts: undefined;
   ContactDetails: { id: string; contact: Contact };
-  EditContact: undefined;
+  EditContact: { contact: Contact };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
