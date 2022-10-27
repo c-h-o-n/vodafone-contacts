@@ -9,21 +9,25 @@ import * as Linking from 'expo-linking';
 
 import { RootStackParamList } from './types';
 
+// TODO add full linking config
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL('/')],
   config: {
     screens: {
-      Root: {
+      Home: {
         screens: {
-          Home: {
+          Contacts: {
             screens: {
-              HomeScreen: '',
+              ContactsScreen: '',
             },
           },
-          // TODO insert rest screen
         },
       },
-      Modal: 'modal',
+      CreateContact: {
+        screens: {
+          CreateContactScreen: 'create',
+        },
+      },
       NotFound: '*',
     },
   },

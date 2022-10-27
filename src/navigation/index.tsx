@@ -1,13 +1,12 @@
 import { NavigationContainer } from '@react-navigation/native';
-import * as React from 'react';
 
 import LinkingConfiguration from './LinkingConfiguration';
-import RootNavigator from './RootNavigator';
+import RootStackNavigator from './RootStackNavigator';
 
 export default function Navigation() {
   return (
     <NavigationContainer linking={LinkingConfiguration}>
-      <RootNavigator />
+      <RootStackNavigator />
     </NavigationContainer>
   );
 }

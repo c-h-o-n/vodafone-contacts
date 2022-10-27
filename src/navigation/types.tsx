@@ -9,14 +9,20 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 // to make useNavigation() or <Link /> typesafe
 declare global {
   namespace ReactNavigation {
-    interface RootParamLists extends RootStackParamList {}
+    interface RootParamList extends RootStackParamList {}
   }
 }
 
 export type RootStackParamList = {
-  Root: NavigatorScreenParams<RootTabParamList> | undefined;
-  Modal: undefined;
+  Home: NavigatorScreenParams<HomeStackParamList> | undefined;
+  CreateContact: undefined;
   NotFound: undefined;
+};
+
+export type HomeStackParamList = {
+  Contacts: undefined;
+  ContactDetails: undefined;
+  EditContact: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
@@ -24,9 +30,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
   Screen
 >;
 
-export type RootTabParamList = {
-  Home: undefined;
-  Contact: undefined;
-  EditContact: undefined;
-  AddNew: undefined;
-};
+export type HomeStackScreenProps<Screen extends keyof HomeStackParamList> = NativeStackScreenProps<
+  HomeStackParamList,
+  Screen
+>;

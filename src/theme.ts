@@ -12,9 +12,7 @@ const theme = extendTheme({
   },
   colors: {
     background: '#ECECEC',
-    primary: {
-      400: '#B73128',
-    },
+    primary: '#B73128',
   },
 });
 
