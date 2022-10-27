@@ -9,7 +9,7 @@ import useApi from '../hooks/useApi';
 import { HomeStackScreenProps } from '../navigation/types';
 import { Contact } from '../types/Contact';
 
-export default function ContactsScreen({ navigation }: HomeStackScreenProps<'Contacts'>) {
+export default function ContactListScreen({ navigation }: HomeStackScreenProps<'Contacts'>) {
   const { getContacts } = useApi();
   const { data, isError, isLoading } = useQuery<Contact[], Error>(['contacts'], getContacts);
 

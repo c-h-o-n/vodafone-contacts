@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import CreateContactScreen from '../screens/CreateContactScreen';
+import AddNewContactScreen from '../screens/AddNewContactScreen';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 
@@ -15,7 +15,7 @@ export default function RootStackNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Home" component={HomeStackNavigator} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} />
-      <Stack.Screen name="CreateContact" component={CreateContactScreen} />
+      <Stack.Screen name="CreateContact" component={AddNewContactScreen} />
     </Stack.Navigator>
   );
 }

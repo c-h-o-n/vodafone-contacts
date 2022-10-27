@@ -1,6 +1,6 @@
 import { Center, Heading, View } from 'native-base';
 
-export default function CreateContactScreen() {
+export default function AddNewContactScreen() {
   return (
     <View>
       <Center>
