@@ -10,11 +10,24 @@ export default function useApi() {
     if (!response.ok) {
       throw new Error('Error loading contacts');
     }
-    const data = await response.json();
+    const data: ApiResponse = await response.json();
+
     return data.results;
   };
 
   return {
     getContacts,
   };
+}
+
+interface ApiResponse {
+  results: Contact[];
+  info: Info;
+}
+
+interface Info {
+  seed: string;
+  results: number;
+  page: number;
+  version: string;
 }

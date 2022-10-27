@@ -1,11 +1,9 @@
-import { Center, Heading, View } from 'native-base';
+import { Heading, View } from 'native-base';
 
 export default function AddNewContactScreen() {
   return (
     <View>
-      <Center>
-        <Heading>Create contact works!</Heading>
-      </Center>
+      <Heading>Add New Contact</Heading>
     </View>
   );
 }

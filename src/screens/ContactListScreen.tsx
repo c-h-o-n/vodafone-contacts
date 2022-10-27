@@ -1,8 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { AspectRatio, Center, Heading, ScrollView, View, VStack } from 'native-base';
+import { Center, Heading, Pressable, ScrollView, Text, View, VStack } from 'native-base';
 import { useEffect, useState } from 'react';
 
-import Logo from '../assets/images/vodafone_logo.svg';
 import ContactCard from '../components/ContactCard';
 import Initials from '../components/Initials';
 import useApi from '../hooks/useApi';
@@ -56,27 +55,31 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
   }
 
   return (
-    <View alignItems="center">
-      <AspectRatio ratio={{ base: 1177.9 / 311.8 }} w={'100%'} maxH={'33%'}>
-        <Logo />
-      </AspectRatio>
+    <View>
+      <Center>
+        <Heading fontSize={'4xl'}>Contacts</Heading>
 
-      <Heading fontSize={'4xl'}>Contacts</Heading>
+        <Initials initials={initials} updateSelectedIntitial={updateSelectedIntitial} sortByInitial={sortByInitial} />
 
-      <Initials initials={initials} updateSelectedIntitial={updateSelectedIntitial} sortByInitial={sortByInitial} />
-
-      <ScrollView p={2} w={'100%'}>
-        <VStack space={'12'} py={4} px={2}>
-          {data
-            .filter(
-              (contact) =>
-                !sortByInitial || contact.name.last[0] === sortByInitial || contact.name.first[0] === sortByInitial
-            )
-            .map((contact) => (
-              <ContactCard key={contact.login.uuid} contact={contact} />
-            ))}
-        </VStack>
-      </ScrollView>
+        <ScrollView p={2} w={'100%'}>
+          <VStack space={'12'} py={4} px={2}>
+            {data
+              .filter(
+                (contact) =>
+                  !sortByInitial || contact.name.last[0] === sortByInitial || contact.name.first[0] === sortByInitial
+              )
+              .map((contact) => (
+                <Pressable
+                  key={contact.login.uuid}
+                  onPress={() => {
+                    navigation.navigate('ContactDetails', { id: contact.login.uuid, contact });
+                  }}>
+                  <ContactCard contact={contact} />
+                </Pressable>
+              ))}
+          </VStack>
+        </ScrollView>
+      </Center>
     </View>
   );
 }

@@ -6,6 +6,8 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
+import { Contact } from '../types/Contact';
+
 // to make useNavigation() or <Link /> typesafe
 declare global {
   namespace ReactNavigation {
@@ -21,7 +23,7 @@ export type RootStackParamList = {
 
 export type HomeStackParamList = {
   Contacts: undefined;
-  ContactDetails: undefined;
+  ContactDetails: { id: string; contact: Contact };
   EditContact: undefined;
 };
 

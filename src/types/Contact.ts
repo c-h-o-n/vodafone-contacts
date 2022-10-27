@@ -1,40 +1,76 @@
-// "name": {
-//     "title": "Miss",
-//     "first": "Emmanuella",
-//     "last": "Teunissen"
-export type Contact = {
-  name: {
-    title: string;
-    first: string;
-    last: string;
-  };
-  picture: {
-    large: string;
-    medium: string;
-    small: string;
-  };
-  phone: string;
+export interface Contact {
+  gender: string;
+  name: Name;
+  location: Location;
   email: string;
-  login: {
-    uuid: string;
-  };
-};
+  login: Login;
+  dob: Dob;
+  registered: Registered;
+  phone: string;
+  cell: string;
+  id: Id;
+  picture: Picture;
+  nat: string;
+}
 
-// "results": [
-//     {
-//       "name": {
-//         "title": "Mrs",
-//         "first": "Glikeriya",
-//         "last": "Tanskiy"
-//       },
-//       "email": "glikeriya.tanskiy@example.com",
-//       "login": {
-//         "uuid": "3d61bd2d-757e-4d12-bf69-068f305ded53",
-//       "phone": "(066) J88-8313",
-//       "picture": {
-//         "large": "https://randomuser.me/api/portraits/women/19.jpg",
-//         "medium": "https://randomuser.me/api/portraits/med/women/19.jpg",
-//         "thumbnail": "https://randomuser.me/api/portraits/thumb/women/19.jpg"
-//       },
-//     }
-//   ],
+export interface Name {
+  title: string;
+  first: string;
+  last: string;
+}
+
+export interface Location {
+  street: Street;
+  city: string;
+  state: string;
+  country: string;
+  postcode: number;
+  coordinates: Coordinates;
+  timezone: Timezone;
+}
+
+export interface Street {
+  number: number;
+  name: string;
+}
+
+export interface Coordinates {
+  latitude: string;
+  longitude: string;
+}
+
+export interface Timezone {
+  offset: string;
+  description: string;
+}
+
+export interface Login {
+  uuid: string;
+  username: string;
+  password: string;
+  salt: string;
+  md5: string;
+  sha1: string;
+  sha256: string;
+}
+
+export interface Dob {
+  date: string;
+  age: number;
+}
+
+export interface Registered {
+  date: string;
+  age: number;
+}
+
+export interface Id {
+  name: string;
+  value: string;
+}
+
+export interface Picture {
+  large: string;
+  medium: string;
+  thumbnail: string;
+}
