@@ -1,23 +1,48 @@
-import { Button, Heading, HStack, Image, Text, View, VStack } from 'native-base';
+import { Box, Button, Center, HStack, Image, Text, View, VStack } from 'native-base';
+import { useMemo } from 'react';
+
+import ErrorMessage from '../components/ErrorMessage';
+import Header from '../components/Header';
+
+import { useContact } from '../context/ContactsContext';
 
 import { HomeStackScreenProps } from '../navigation/types';
 
-export default function ContactDetailsScreen({
-  route: {
-    params: { contact, id },
-  },
-  navigation,
-}: HomeStackScreenProps<'ContactDetails'>) {
-  return (
-    <View>
-      <VStack alignItems={'center'} space={12}>
-        <Heading fontSize={'4xl'} textAlign={'center'}>
-          {contact.name.first} {contact.name.last}'s Profile
-        </Heading>
+export default function ContactDetailsScreen({ route, navigation }: HomeStackScreenProps<'ContactDetails'>) {
+  const { id } = route.params;
 
+  const { deleteContact, getContact } = useContact();
+  const contact = useMemo(() => getContact(id), [getContact, id]);
+
+  if (!contact) {
+    return (
+      <View>
+        <Center flex={1}>
+          <ErrorMessage message="Contact not found!" />
+        </Center>
+      </View>
+    );
+  }
+
+  const onEdit = () => {
+    navigation.push('EditContact', { id, contact });
+  };
+
+  const onDelete = () => {
+    deleteContact(id);
+    navigation.popToTop();
+  };
+
+  return (
+    <View justifyContent={'space-between'}>
+      <Box pb={4}>
+        <Header title={`${contact.name.first} ${contact.name.last}'s Profile`} />
+      </Box>
+
+      <VStack alignItems={'center'} space={12}>
         <Image
           source={{
-            uri: contact.picture.large,
+            uri: contact.imageUrl,
           }}
           alt={`${contact.name.first}-${contact.name.last}-avatar`}
           size={'xl'}
@@ -33,28 +58,23 @@ export default function ContactDetailsScreen({
           </Text>
 
           <Text fontWeight={'bold'} textAlign={'center'}>
-            Address: {contact.location.street.name} {contact.location.street.number}, {contact.location.city},{' '}
-            {contact.location.state}
+            Address: {contact.address}
           </Text>
         </VStack>
         <HStack w={'100%'} justifyContent={'center'} space={10}>
-          <Button
-            variant={'outline'}
-            borderColor={'red.400'}
-            colorScheme={'red'}
-            onPress={() => console.log('delete by id => replace nav to contact list')}>
+          <Button variant={'outline'} borderColor={'red.400'} colorScheme={'red'} onPress={onDelete}>
             Delete
           </Button>
 
-          <Button
-            variant={'outline'}
-            borderColor={'black'}
-            colorScheme={'black'}
-            onPress={() => navigation.navigate('EditContact', { contact })}>
+          <Button variant={'outline'} borderColor={'black'} colorScheme={'black'} onPress={onEdit}>
             Edit
           </Button>
         </HStack>
       </VStack>
+
+      <Text fontWeight={'bold'} textAlign={'center'} mb={6}>
+        All Rights Reserved _VOIS 2022
+      </Text>
     </View>
   );
 }

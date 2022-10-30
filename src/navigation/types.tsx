@@ -17,14 +17,14 @@ declare global {
 
 export type RootStackParamList = {
   Home: NavigatorScreenParams<HomeStackParamList> | undefined;
-  CreateContact: undefined;
+  AddNewContact: undefined;
   NotFound: undefined;
 };
 
 export type HomeStackParamList = {
-  Contacts: undefined;
-  ContactDetails: { id: string; contact: Contact };
-  EditContact: { contact: Contact };
+  ContactList: undefined;
+  ContactDetails: { id: string };
+  EditContact: { id: string; contact: Contact };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<

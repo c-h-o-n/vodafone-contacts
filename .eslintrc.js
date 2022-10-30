@@ -17,7 +17,6 @@ module.exports = {
     'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
-    // 'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'universe/native',
@@ -26,12 +25,12 @@ module.exports = {
     'plugin:prettier/recommended',
   ],
   rules: {
-    'no-console': 0,
-    // 'import/extensions': ['error', 'never'],
+    'no-console': 0, 
     'import/order': [1, { 'newlines-between': 'always-and-inside-groups' }],
 
     '@typescript-eslint/no-namespace': 0,
     '@typescript-eslint/no-empty-interface': 0,
+    '@typescript-eslint/no-redeclare': 0,
 
     'react/jsx-filename-extension': [
       1,
@@ -52,9 +51,16 @@ module.exports = {
     'react-hooks/exhaustive-deps': 1,
     'react/jsx-curly-brace-presence': 0,
     'react/no-unescaped-entities': 0,
+    'react/require-default-props': [
+      2,
+      {
+        functions: 'defaultArguments',
+      },
+    ],
 
     'react-native/sort-styles': 0,
     'react-native/no-raw-text': 0,
+    'react-native/no-inline-styles': 0,
 
     'prettier/prettier': 1,
   },

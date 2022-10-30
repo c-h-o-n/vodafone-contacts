@@ -1,7 +1,5 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AspectRatio, View } from 'native-base';
-
-import Logo from '../assets/images/vodafone_logo.svg';
+import { createStackNavigator } from '@react-navigation/stack';
+import { View } from 'native-base';
 
 import AddNewContactScreen from '../screens/AddNewContactScreen';
 
@@ -11,18 +9,16 @@ import HomeStackNavigator from './HomeStackNavigator';
 
 import { RootStackParamList } from './types';
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function RootStackNavigator() {
   return (
     <View>
-      <AspectRatio ratio={{ base: 1177.9 / 311.8 }} w={'100%'} maxH={'33%'}>
-        <Logo />
-      </AspectRatio>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeStackNavigator} />
+        <Stack.Screen name="AddNewContact" component={AddNewContactScreen} />
+
         <Stack.Screen name="NotFound" component={NotFoundScreen} />
-        <Stack.Screen name="CreateContact" component={AddNewContactScreen} />
       </Stack.Navigator>
     </View>
   );

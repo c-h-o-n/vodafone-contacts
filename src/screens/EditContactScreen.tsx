@@ -1,8 +1,15 @@
-import { Button, FormControl, Heading, Input, ScrollView, View, VStack } from 'native-base';
+import { Box, Button, FormControl, Input, ScrollView, View, VStack } from 'native-base';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+
+import { useContact } from '../context/ContactsContext';
+
 import { EMAIL_REGEXP } from '../constants/regexp';
+
 import { HomeStackScreenProps } from '../navigation/types';
+import { Contact } from '../types/Contact';
 
 interface FormInput {
   firstName: string;
@@ -13,116 +20,136 @@ interface FormInput {
 
 export default function EditContactScreen({
   route: {
-    params: { contact },
+    params: { id, contact },
   },
+  navigation,
 }: HomeStackScreenProps<'EditContact'>) {
+  const { updateContact } = useContact();
+
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormInput>();
+  } = useForm<FormInput>({
+    defaultValues: {
+      firstName: contact.name.first,
+      lastName: contact.name.last,
+      email: contact.email,
+      phone: contact.phone,
+    },
+  });
 
-  const onSubmit: SubmitHandler<object> = (data) => {
-    console.log('submiting with ', data, errors);
+  const onSubmit: SubmitHandler<FormInput> = (data) => {
+    const updatedContact: Partial<Contact> = {
+      name: {
+        first: data.firstName,
+        last: data.lastName,
+      },
+      email: data.email,
+      phone: data.phone,
+    };
+
+    updateContact(id, updatedContact);
+
+    navigation.pop();
+    console.log('updated contact:', updatedContact);
   };
 
   return (
     <View>
-      <ScrollView p={2}>
-        <Heading fontSize={'4xl'} textAlign={'center'}>
-          {contact.name.first} {contact.name.last}'s Profile
-        </Heading>
+      <ScrollView px={2} _contentContainerStyle={{ flexGrow: 1 }}>
+        <Header title={`${contact.name.first} ${contact.name.last}'s Profile`} />
 
-        <VStack width="100%" alignItems={'center'} space={4}>
-          {/* First name */}
-          <FormControl isRequired isInvalid={'firstName' in errors}>
-            <FormControl.Label>First Name</FormControl.Label>
-            <Controller
-              control={control}
-              render={({ field: { onBlur, onChange, value } }) => (
-                <Input
-                  onBlur={onBlur}
-                  onChangeText={(val) => onChange(val)}
-                  value={value}
-                  placeholder={contact.name.first}
-                  autoComplete={'name-given'}
-                />
-              )}
-              name="firstName"
-              rules={{ required: 'Field is required' }}
-              defaultValue=""
-            />
-            <FormControl.ErrorMessage>{errors.firstName?.message}</FormControl.ErrorMessage>
-          </FormControl>
-          {/* Last name */}
-          <FormControl isRequired isInvalid={'lastName' in errors}>
-            <FormControl.Label>Last Name</FormControl.Label>
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  onBlur={onBlur}
-                  onChangeText={(val) => onChange(val)}
-                  value={value}
-                  placeholder={contact.name.last}
-                  autoComplete={'name-family'}
-                />
-              )}
-              name="lastName"
-              rules={{ required: 'Field is required' }}
-              defaultValue=""
-            />
-            <FormControl.ErrorMessage>{errors.lastName?.message}</FormControl.ErrorMessage>
-          </FormControl>
-          {/* Email */}
-          <FormControl isRequired isInvalid={'email' in errors}>
-            <FormControl.Label>Email</FormControl.Label>
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  onBlur={onBlur}
-                  onChangeText={(val) => onChange(val)}
-                  value={value}
-                  placeholder={contact.email}
-                  keyboardType={'email-address'}
-                  autoComplete={'email'}
-                />
-              )}
-              name="email"
-              rules={{
-                required: 'Field is required',
-                pattern: { message: 'Not a valid email address', value: EMAIL_REGEXP },
-              }}
-              defaultValue=""
-            />
-            <FormControl.ErrorMessage>{errors.email?.message}</FormControl.ErrorMessage>
-          </FormControl>
-          {/* Phone */}
-          <FormControl isRequired isInvalid={'phone' in errors}>
-            <FormControl.Label>Phone</FormControl.Label>
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  onBlur={onBlur}
-                  onChangeText={(val) => onChange(val)}
-                  value={value}
-                  placeholder={contact.phone}
-                  keyboardType={'phone-pad'}
-                  autoComplete={'tel'}
-                />
-              )}
-              name="phone"
-              rules={{ required: 'Field is required' }}
-              defaultValue=""
-            />
-            <FormControl.ErrorMessage>{errors.phone?.message}</FormControl.ErrorMessage>
-          </FormControl>
-          <Button onPress={handleSubmit(onSubmit)} variant={'outline'} colorScheme="black">
-            Save Contact
-          </Button>
-        </VStack>
+        <Box justifyContent={'space-between'} flex={1}>
+          <VStack width="100%" alignItems={'center'} space={4}>
+            {/* First name */}
+            <FormControl isRequired isInvalid={'firstName' in errors}>
+              <FormControl.Label>First Name</FormControl.Label>
+              <Controller
+                control={control}
+                render={({ field: { onBlur, onChange, value } }) => (
+                  <Input
+                    onBlur={onBlur}
+                    onChangeText={(val) => onChange(val)}
+                    value={value}
+                    placeholder={contact.name.first}
+                    autoComplete={'name-given'}
+                  />
+                )}
+                name="firstName"
+                rules={{ required: 'Field is required' }}
+              />
+              <FormControl.ErrorMessage>{errors.firstName?.message}</FormControl.ErrorMessage>
+            </FormControl>
+            {/* Last name */}
+            <FormControl isRequired isInvalid={'lastName' in errors}>
+              <FormControl.Label>Last Name</FormControl.Label>
+              <Controller
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    onBlur={onBlur}
+                    onChangeText={(val) => onChange(val)}
+                    value={value}
+                    placeholder={contact.name.last}
+                    autoComplete={'name-family'}
+                  />
+                )}
+                name="lastName"
+                rules={{ required: 'Field is required' }}
+              />
+              <FormControl.ErrorMessage>{errors.lastName?.message}</FormControl.ErrorMessage>
+            </FormControl>
+            {/* Email */}
+            <FormControl isRequired isInvalid={'email' in errors}>
+              <FormControl.Label>Email</FormControl.Label>
+              <Controller
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    onBlur={onBlur}
+                    onChangeText={(val) => onChange(val)}
+                    value={value}
+                    placeholder={contact.email}
+                    keyboardType={'email-address'}
+                    autoComplete={'email'}
+                  />
+                )}
+                name="email"
+                rules={{
+                  required: 'Field is required',
+                  pattern: { message: 'Not a valid email address', value: EMAIL_REGEXP },
+                }}
+              />
+              <FormControl.ErrorMessage>{errors.email?.message}</FormControl.ErrorMessage>
+            </FormControl>
+            {/* Phone */}
+            <FormControl isRequired isInvalid={'phone' in errors}>
+              <FormControl.Label>Phone</FormControl.Label>
+              <Controller
+                control={control}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input
+                    onBlur={onBlur}
+                    onChangeText={(val) => onChange(val)}
+                    value={value}
+                    placeholder={contact.phone}
+                    keyboardType={'phone-pad'}
+                    autoComplete={'tel'}
+                  />
+                )}
+                name="phone"
+                rules={{ required: 'Field is required' }}
+              />
+              <FormControl.ErrorMessage>{errors.phone?.message}</FormControl.ErrorMessage>
+            </FormControl>
+            <Button onPress={handleSubmit(onSubmit)} variant={'outline'} colorScheme="black">
+              Save Contact
+            </Button>
+          </VStack>
+
+          <Footer />
+        </Box>
       </ScrollView>
     </View>
   );

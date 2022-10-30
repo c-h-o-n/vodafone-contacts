@@ -1,38 +1,38 @@
 import { useQuery } from '@tanstack/react-query';
-import { Center, Heading, Pressable, ScrollView, Text, View, VStack } from 'native-base';
-import { useEffect, useState } from 'react';
+import { Box, Center, Divider, Heading, Pressable, ScrollView, View, VStack } from 'native-base';
+import { useMemo, useState } from 'react';
 
 import ContactCard from '../components/ContactCard';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 import Initials from '../components/Initials';
+
+import { useContact } from '../context/ContactsContext';
+
 import useApi from '../hooks/useApi';
+
 import { HomeStackScreenProps } from '../navigation/types';
 import { Contact } from '../types/Contact';
+import { getInitialLeters } from '../utilities';
 
-export default function ContactListScreen({ navigation }: HomeStackScreenProps<'Contacts'>) {
+export default function ContactListScreen({ navigation }: HomeStackScreenProps<'ContactList'>) {
   const { getContacts } = useApi();
-  const { data, isError, isLoading } = useQuery<Contact[], Error>(['contacts'], getContacts);
+  const { loadContacts, contacts } = useContact();
 
   const [sortByInitial, setSortByInitial] = useState('');
-  const [initials, setInitials] = useState(new Set<string>());
-
-  useEffect(() => {
-    const getInitials = () => {
-      const initialsArray: string[] = [];
-      data?.forEach((contact) => {
-        initialsArray.push(contact.name.first[0], contact.name.last[0]);
-      });
-
-      return new Set(initialsArray);
-    };
-
-    if (data) {
-      setInitials(getInitials());
-    }
-  }, [data]);
-
   const updateSelectedIntitial = (letter: string) => {
     setSortByInitial(letter);
   };
+
+  const initials = useMemo(() => getInitialLeters(contacts), [contacts]);
+
+  const { isError, isLoading } = useQuery<Contact[], Error>(['contacts'], getContacts, {
+    staleTime: Infinity, // to prevent automatic refetch
+    onSuccess: (data) => {
+      console.log('data loaded');
+      loadContacts(data);
+    },
+  });
 
   // TODO loading spinner
   if (isLoading) {
@@ -44,7 +44,7 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
       </View>
     );
   }
-// TODO error message
+  // TODO error message
   if (isError) {
     return (
       <View>
@@ -57,30 +57,37 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
 
   return (
     <View>
-      <Center>
-        <Heading fontSize={'4xl'}>Contacts</Heading>
+      <Box pb={6}>
+        <Header title="Contacts" />
+      </Box>
 
+      <Box pb={4}>
         <Initials initials={initials} updateSelectedIntitial={updateSelectedIntitial} sortByInitial={sortByInitial} />
+        <Divider h={1} bg={'gray.300'} rounded={'2xl'} />
+      </Box>
 
-        <ScrollView p={2} w={'100%'}>
-          <VStack space={'12'} py={4} px={2}>
-            {data
-              .filter(
-                (contact) =>
-                  !sortByInitial || contact.name.last[0] === sortByInitial || contact.name.first[0] === sortByInitial
-              )
-              .map((contact) => (
-                <Pressable
-                  key={contact.login.uuid}
-                  onPress={() => {
-                    navigation.navigate('ContactDetails', { id: contact.login.uuid, contact });
-                  }}>
-                  <ContactCard contact={contact} />
-                </Pressable>
-              ))}
-          </VStack>
-        </ScrollView>
-      </Center>
+      <ScrollView p={2} w={'100%'}>
+        <VStack space={8}>
+          {contacts
+            .filter(
+              (contact) =>
+                !sortByInitial ||
+                contact.name.last[0].toUpperCase() === sortByInitial.toUpperCase() ||
+                contact.name.first[0].toUpperCase() === sortByInitial.toUpperCase()
+            )
+            .map((contact) => (
+              <Pressable
+                key={contact.id}
+                onPress={() => {
+                  navigation.push('ContactDetails', { id: contact.id });
+                }}>
+                <ContactCard contact={contact} />
+              </Pressable>
+            ))}
+        </VStack>
+
+        <Footer />
+      </ScrollView>
     </View>
   );
 }

@@ -1,5 +1,6 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Box, Text, View } from 'native-base';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import { Box, View } from 'native-base';
 
 import AddNewContactFAB from '../components/AddNewContactFAB';
 
@@ -10,22 +11,19 @@ import ContactListScreen from '../screens/ContactListScreen';
 
 import { HomeStackParamList } from './types';
 
-const Stack = createNativeStackNavigator<HomeStackParamList>();
+const Stack = createStackNavigator<HomeStackParamList>();
 
 export default function HomeStackNavigator() {
   return (
     <View>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Contacts" component={ContactListScreen} />
+      <Stack.Navigator initialRouteName="ContactList" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="ContactList" component={ContactListScreen} />
         <Stack.Screen name="ContactDetails" component={ContactDetailsScreen} />
         <Stack.Screen name="EditContact" component={EditContactScreen} />
       </Stack.Navigator>
       <Box position={'absolute'} bottom={10} right={4}>
         <AddNewContactFAB />
       </Box>
-      <Text fontWeight={'bold'} textAlign={'center'} mb={6}>
-        All Rights Reserved _VOIS 2022
-      </Text>
     </View>
   );
 }

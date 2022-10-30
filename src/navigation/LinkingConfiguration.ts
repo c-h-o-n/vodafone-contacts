@@ -16,16 +16,16 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Home: {
         screens: {
-          Contacts: {
+          ContactList: {
             screens: {
-              ContactsScreen: '',
+              ContactListScreen: '',
             },
           },
         },
       },
-      CreateContact: {
+      AddNewContact: {
         screens: {
-          CreateContactScreen: 'create',
+          AddNewContactScreen: 'add',
         },
       },
       NotFound: '*',
