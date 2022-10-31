@@ -1,4 +1,4 @@
-import { Box, HStack, Image, Text } from 'native-base';
+import { Box, HStack, Image, Text, VStack } from 'native-base';
 
 import { Contact } from '../types/Contact';
 
@@ -17,13 +17,17 @@ export default function ContactCard({ contact }: ContactCardProps) {
           alt={`${contact.name.first}-${contact.name.last}-avatar`}
           size="xl"
         />
-        <Box flex={1}>
-          <Text textAlign={'left'} fontWeight={'bold'}>
+        <VStack flex={1} space={2}>
+          <Text fontWeight={'bold'} textAlign={'left'} fontSize={'md'} mb={1}>
             {contact.name.first},{contact.name.last}
           </Text>
-          <Text>{contact.email}</Text>
-          <Text>{contact.phone}</Text>
-        </Box>
+          <Text fontWeight={'semibold'} color={'gray.700'}>
+            {contact.email}
+          </Text>
+          <Text fontWeight={'semibold'} color={'gray.700'}>
+            {contact.phone}
+          </Text>
+        </VStack>
       </HStack>
     </Box>
   );

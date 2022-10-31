@@ -1,11 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import { Box, Center, Divider, Heading, Pressable, ScrollView, View, VStack } from 'native-base';
+import { Box, Center, Divider, Pressable, ScrollView, View, VStack } from 'native-base';
 import { useMemo, useState } from 'react';
 
 import ContactCard from '../components/ContactCard';
+import ErrorMessage from '../components/ErrorMessage';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Initials from '../components/Initials';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 import { useContact } from '../context/ContactsContext';
 
@@ -34,22 +36,21 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
     },
   });
 
-  // TODO loading spinner
   if (isLoading) {
     return (
       <View>
-        <Center>
-          <Heading>Loading..</Heading>
+        <Center flex={1}>
+          <LoadingSpinner />
         </Center>
       </View>
     );
   }
-  // TODO error message
+
   if (isError) {
     return (
       <View>
-        <Center>
-          <Heading>AJAJAJAJAJ</Heading>
+        <Center flex={1}>
+          <ErrorMessage message="Failed to fetch contacts." />
         </Center>
       </View>
     );
@@ -61,32 +62,34 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
         <Header title="Contacts" />
       </Box>
 
-      <Box pb={4}>
+      <Box p={4}>
         <Initials initials={initials} updateSelectedIntitial={updateSelectedIntitial} sortByInitial={sortByInitial} />
         <Divider h={1} bg={'gray.300'} rounded={'2xl'} />
       </Box>
 
-      <ScrollView p={2} w={'100%'}>
-        <VStack space={8}>
-          {contacts
-            .filter(
-              (contact) =>
-                !sortByInitial ||
-                contact.name.last[0].toUpperCase() === sortByInitial.toUpperCase() ||
-                contact.name.first[0].toUpperCase() === sortByInitial.toUpperCase()
-            )
-            .map((contact) => (
-              <Pressable
-                key={contact.id}
-                onPress={() => {
-                  navigation.push('ContactDetails', { id: contact.id });
-                }}>
-                <ContactCard contact={contact} />
-              </Pressable>
-            ))}
-        </VStack>
+      <ScrollView p={2} w={'100%'} _contentContainerStyle={{ flexGrow: 1 }}>
+        <Box flex={1} justifyContent={'space-between'}>
+          <VStack space={8}>
+            {contacts
+              .filter(
+                (contact) =>
+                  !sortByInitial ||
+                  contact.name.last[0].toUpperCase() === sortByInitial.toUpperCase() ||
+                  contact.name.first[0].toUpperCase() === sortByInitial.toUpperCase()
+              )
+              .map((contact) => (
+                <Pressable
+                  key={contact.id}
+                  onPress={() => {
+                    navigation.push('ContactDetails', { id: contact.id });
+                  }}>
+                  <ContactCard contact={contact} />
+                </Pressable>
+              ))}
+          </VStack>
 
-        <Footer />
+          <Footer />
+        </Box>
       </ScrollView>
     </View>
   );

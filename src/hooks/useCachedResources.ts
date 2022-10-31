@@ -16,7 +16,9 @@ export default function useCachedResources() {
         // Load fonts
         await Font.loadAsync({
           ...FontAwesome.font,
-          'open-sans': require('../assets/fonts/OpenSans-Regular.ttf'),
+          'OpenSans-Regular': require('../assets/fonts/OpenSans-Regular.ttf'),
+          'OpenSans-SemiBold': require('../assets/fonts/OpenSans-SemiBold.ttf'),
+          'OpenSans-Bold': require('../assets/fonts/OpenSans-Bold.ttf'),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

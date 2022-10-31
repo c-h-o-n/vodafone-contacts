@@ -1,7 +1,24 @@
 import { extendTheme } from 'native-base';
 
-// LATER add dark mode
 const theme = extendTheme({
+  fontConfig: {
+    'open-sans': {
+      400: {
+        normal: 'OpenSans-Regular',
+      },
+      600: {
+        normal: 'OpenSans-SemiBold',
+      },
+      700: {
+        normal: 'OpenSans-Bold',
+      },
+    },
+  },
+  fonts: {
+    heading: 'open-sans',
+    body: 'open-sans',
+    mono: 'open-sans',
+  },
   components: {
     View: {
       defaultProps: {
@@ -9,7 +26,18 @@ const theme = extendTheme({
         bg: 'background',
       },
     },
+
+    Button: {
+      defaultProps: {
+        py: 2,
+        px: 6,
+        _text: {
+          fontWeight: 'semibold',
+        },
+      },
+    },
   },
+
   colors: {
     background: '#ECECEC',
     primary: '#B73128',

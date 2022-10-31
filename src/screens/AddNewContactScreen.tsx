@@ -54,118 +54,121 @@ export default function AddNewContactScreen({ navigation }: RootStackScreenProps
         <Header title={'Add New Contact'} />
 
         <Box flex={1} justifyContent={'space-between'}>
-          <VStack width="100%" alignItems={'center'} space={4}>
-            {/* First name */}
-            <FormControl isRequired isInvalid={'firstName' in errors}>
-              <FormControl.Label>First Name</FormControl.Label>
-              <Controller
-                control={control}
-                render={({ field: { onBlur, onChange, value } }) => (
-                  <Input
-                    onBlur={onBlur}
-                    onChangeText={(val) => onChange(val)}
-                    value={value}
-                    placeholder={'Enter First name'}
-                    autoComplete={'name-given'}
-                  />
-                )}
-                name="firstName"
-                rules={{ required: 'Field is required' }}
-                defaultValue=""
-              />
-              <FormControl.ErrorMessage>{errors.firstName?.message}</FormControl.ErrorMessage>
-            </FormControl>
+          <VStack w={'100%'} alignItems={'center'} space={8}>
+            <VStack w={'100%'} space={4}>
+              {/* First name */}
+              <FormControl isRequired isInvalid={'firstName' in errors}>
+                <FormControl.Label>First Name</FormControl.Label>
+                <Controller
+                  control={control}
+                  render={({ field: { onBlur, onChange, value } }) => (
+                    <Input
+                      onBlur={onBlur}
+                      onChangeText={(val) => onChange(val)}
+                      value={value}
+                      placeholder={'Enter First name'}
+                      autoComplete={'name-given'}
+                    />
+                  )}
+                  name="firstName"
+                  rules={{ required: 'Field is required' }}
+                  defaultValue=""
+                />
+                <FormControl.ErrorMessage>{errors.firstName?.message}</FormControl.ErrorMessage>
+              </FormControl>
 
-            {/* Last name */}
-            <FormControl isRequired isInvalid={'lastName' in errors}>
-              <FormControl.Label>Last Name</FormControl.Label>
-              <Controller
-                control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <Input
-                    onBlur={onBlur}
-                    onChangeText={(val) => onChange(val)}
-                    value={value}
-                    placeholder={'Enter Last name'}
-                    autoComplete={'name-family'}
-                  />
-                )}
-                name="lastName"
-                rules={{ required: 'Field is required' }}
-                defaultValue=""
-              />
-              <FormControl.ErrorMessage>{errors.lastName?.message}</FormControl.ErrorMessage>
-            </FormControl>
+              {/* Last name */}
+              <FormControl isRequired isInvalid={'lastName' in errors}>
+                <FormControl.Label>Last Name</FormControl.Label>
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input
+                      onBlur={onBlur}
+                      onChangeText={(val) => onChange(val)}
+                      value={value}
+                      placeholder={'Enter Last name'}
+                      autoComplete={'name-family'}
+                    />
+                  )}
+                  name="lastName"
+                  rules={{ required: 'Field is required' }}
+                  defaultValue=""
+                />
+                <FormControl.ErrorMessage>{errors.lastName?.message}</FormControl.ErrorMessage>
+              </FormControl>
 
-            {/* Email */}
-            <FormControl isRequired isInvalid={'email' in errors}>
-              <FormControl.Label>Email</FormControl.Label>
-              <Controller
-                control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <Input
-                    onBlur={onBlur}
-                    onChangeText={(val) => onChange(val)}
-                    value={value}
-                    placeholder={'Enter Phone'}
-                    keyboardType={'email-address'}
-                    autoComplete={'email'}
-                  />
-                )}
-                name="email"
-                rules={{
-                  required: 'Field is required',
-                  pattern: { message: 'Not a valid email address', value: EMAIL_REGEXP },
-                }}
-                defaultValue=""
-              />
-              <FormControl.ErrorMessage>{errors.email?.message}</FormControl.ErrorMessage>
-            </FormControl>
+              {/* Email */}
+              <FormControl isRequired isInvalid={'email' in errors}>
+                <FormControl.Label>Email</FormControl.Label>
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input
+                      onBlur={onBlur}
+                      onChangeText={(val) => onChange(val)}
+                      value={value}
+                      placeholder={'Enter Phone'}
+                      keyboardType={'email-address'}
+                      autoComplete={'email'}
+                    />
+                  )}
+                  name="email"
+                  rules={{
+                    required: 'Field is required',
+                    pattern: { message: 'Not a valid email address', value: EMAIL_REGEXP },
+                  }}
+                  defaultValue=""
+                />
+                <FormControl.ErrorMessage>{errors.email?.message}</FormControl.ErrorMessage>
+              </FormControl>
 
-            {/* Phone */}
-            <FormControl isRequired isInvalid={'phone' in errors}>
-              <FormControl.Label>Phone</FormControl.Label>
-              <Controller
-                control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <Input
-                    onBlur={onBlur}
-                    onChangeText={(val) => onChange(val)}
-                    value={value}
-                    placeholder={'Enter Phone'}
-                    keyboardType={'phone-pad'}
-                    autoComplete={'tel'}
-                  />
-                )}
-                name="phone"
-                rules={{ required: 'Field is required' }}
-                defaultValue=""
-              />
-              <FormControl.ErrorMessage>{errors.phone?.message}</FormControl.ErrorMessage>
-            </FormControl>
+              {/* Phone */}
+              <FormControl isRequired isInvalid={'phone' in errors}>
+                <FormControl.Label>Phone</FormControl.Label>
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input
+                      onBlur={onBlur}
+                      onChangeText={(val) => onChange(val)}
+                      value={value}
+                      placeholder={'Enter Phone'}
+                      keyboardType={'phone-pad'}
+                      autoComplete={'tel'}
+                    />
+                  )}
+                  name="phone"
+                  rules={{ required: 'Field is required' }}
+                  defaultValue=""
+                />
+                <FormControl.ErrorMessage>{errors.phone?.message}</FormControl.ErrorMessage>
+              </FormControl>
 
-            {/* Address */}
-            <FormControl isRequired isInvalid={'address' in errors}>
-              <FormControl.Label>Address</FormControl.Label>
-              <Controller
-                control={control}
-                render={({ field: { onChange, onBlur, value } }) => (
-                  <Input
-                    onBlur={onBlur}
-                    onChangeText={(val) => onChange(val)}
-                    value={value}
-                    placeholder={'Enter Address'}
-                    keyboardType={'default'}
-                    autoComplete={'off'}
-                  />
-                )}
-                name="address"
-                rules={{ required: 'Field is required' }}
-                defaultValue=""
-              />
-              <FormControl.ErrorMessage>{errors.phone?.message}</FormControl.ErrorMessage>
-            </FormControl>
-            <Button onPress={handleSubmit(onSubmit)} variant={'outline'} colorScheme="black">
+              {/* Address */}
+              <FormControl isRequired isInvalid={'address' in errors}>
+                <FormControl.Label>Address</FormControl.Label>
+                <Controller
+                  control={control}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <Input
+                      onBlur={onBlur}
+                      onChangeText={(val) => onChange(val)}
+                      value={value}
+                      placeholder={'Enter Address'}
+                      keyboardType={'default'}
+                      autoComplete={'off'}
+                    />
+                  )}
+                  name="address"
+                  rules={{ required: 'Field is required' }}
+                  defaultValue=""
+                />
+                <FormControl.ErrorMessage>{errors.phone?.message}</FormControl.ErrorMessage>
+              </FormControl>
+            </VStack>
+
+            <Button onPress={handleSubmit(onSubmit)} variant={'outline'} borderColor={'black'} colorScheme="black">
               Add Contact
             </Button>
           </VStack>
