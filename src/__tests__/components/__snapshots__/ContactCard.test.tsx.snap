@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`contact card renders correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    dataSet={{}}
+    style={
+      {
+        "backgroundColor": "background",
+        "borderRadius": 6,
+        "elevation": 5,
+        "marginLeft": 8,
+        "marginRight": 8,
+        "paddingBottom": 8,
+        "paddingLeft": 8,
+        "paddingRight": 8,
+        "paddingTop": 8,
+        "shadowColor": "#000000",
+        "shadowOffset": {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.25,
+        "shadowRadius": 3.84,
+      }
+    }
+  >
+    <View
+      dataSet={{}}
+      style={
+        {
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Image
+        accessibilityLabel="John-Doe-avatar"
+        alt="John-Doe-avatar"
+        dataSet={{}}
+        onError={[Function]}
+        source={
+          {
+            "uri": "https://cdn.vodafone.co.uk/en/assets/images/large2X/IMG_Tech_Team_Tobi.jpg",
+          }
+        }
+        style={
+          {
+            "height": 128,
+            "maxWidth": "100%",
+            "width": 128,
+          }
+        }
+      />
+      <View
+        dataSet={{}}
+        style={
+          {
+            "width": 8,
+          }
+        }
+      />
+      <View
+        dataSet={{}}
+        style={
+          {
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          dataSet={{}}
+          style={
+            {
+              "backgroundColor": undefined,
+              "color": "#171717",
+              "fontFamily": undefined,
+              "fontSize": 16,
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "letterSpacing": 0,
+              "lineHeight": 24,
+              "marginBottom": 4,
+              "textAlign": "left",
+              "textDecorationLine": undefined,
+            }
+          }
+        >
+          John
+          ,
+          Doe
+        </Text>
+        <View
+          dataSet={{}}
+          style={
+            {
+              "height": 8,
+            }
+          }
+        />
+        <Text
+          dataSet={{}}
+          style={
+            {
+              "backgroundColor": undefined,
+              "color": "#3f3f46",
+              "fontFamily": undefined,
+              "fontSize": 14,
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "letterSpacing": 0,
+              "lineHeight": 21,
+              "textDecorationLine": undefined,
+            }
+          }
+        >
+          john.doe@gmail.com
+        </Text>
+        <View
+          dataSet={{}}
+          style={
+            {
+              "height": 8,
+            }
+          }
+        />
+        <Text
+          dataSet={{}}
+          style={
+            {
+              "backgroundColor": undefined,
+              "color": "#3f3f46",
+              "fontFamily": undefined,
+              "fontSize": 14,
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "letterSpacing": 0,
+              "lineHeight": 21,
+              "textDecorationLine": undefined,
+            }
+          }
+        >
+          06 70 1234 567
+        </Text>
+      </View>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

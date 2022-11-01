@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`footer renders corretly  1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <Text
+    dataSet={{}}
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": "#171717",
+        "fontFamily": undefined,
+        "fontSize": 16,
+        "fontStyle": "normal",
+        "fontWeight": "700",
+        "letterSpacing": 0,
+        "lineHeight": 24,
+        "marginBottom": 24,
+        "marginTop": 24,
+        "textAlign": "center",
+        "textDecorationLine": undefined,
+      }
+    }
+  >
+    All Rights Reserved _VOIS 2022
+  </Text>
+</RNCSafeAreaProvider>
+`;

@@ -1,0 +1,224 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`initial letters renders correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    dataSet={{}}
+    style={
+      {
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <Text
+        dataSet={{}}
+        style={
+          {
+            "backgroundColor": undefined,
+            "color": "#71717a",
+            "fontFamily": undefined,
+            "fontSize": 24,
+            "fontStyle": "normal",
+            "fontWeight": "700",
+            "letterSpacing": 0,
+            "lineHeight": 36,
+            "textDecorationLine": undefined,
+          }
+        }
+      >
+        B
+      </Text>
+    </View>
+    <View
+      dataSet={{}}
+      style={
+        {
+          "width": 16,
+        }
+      }
+    />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <Text
+        dataSet={{}}
+        style={
+          {
+            "backgroundColor": undefined,
+            "color": "#71717a",
+            "fontFamily": undefined,
+            "fontSize": 24,
+            "fontStyle": "normal",
+            "fontWeight": "700",
+            "letterSpacing": 0,
+            "lineHeight": 36,
+            "textDecorationLine": undefined,
+          }
+        }
+      >
+        D
+      </Text>
+    </View>
+    <View
+      dataSet={{}}
+      style={
+        {
+          "width": 16,
+        }
+      }
+    />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <Text
+        dataSet={{}}
+        style={
+          {
+            "backgroundColor": undefined,
+            "color": "#71717a",
+            "fontFamily": undefined,
+            "fontSize": 24,
+            "fontStyle": "normal",
+            "fontWeight": "700",
+            "letterSpacing": 0,
+            "lineHeight": 36,
+            "textDecorationLine": undefined,
+          }
+        }
+      >
+        J
+      </Text>
+    </View>
+    <View
+      dataSet={{}}
+      style={
+        {
+          "width": 16,
+        }
+      }
+    />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <Text
+        dataSet={{}}
+        style={
+          {
+            "backgroundColor": undefined,
+            "color": "#71717a",
+            "fontFamily": undefined,
+            "fontSize": 24,
+            "fontStyle": "normal",
+            "fontWeight": "700",
+            "letterSpacing": 0,
+            "lineHeight": 36,
+            "textDecorationLine": undefined,
+          }
+        }
+      >
+        W
+      </Text>
+    </View>
+    <View
+      dataSet={{}}
+      style={
+        {
+          "width": 16,
+        }
+      }
+    />
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+    >
+      <Text
+        dataSet={{}}
+        style={
+          {
+            "backgroundColor": undefined,
+            "color": "#000000",
+            "fontFamily": undefined,
+            "fontSize": 24,
+            "fontStyle": "normal",
+            "fontWeight": "700",
+            "letterSpacing": 0,
+            "lineHeight": 36,
+            "textDecorationLine": undefined,
+          }
+        }
+      >
+        [ALL]
+      </Text>
+    </View>
+  </View>
+</RNCSafeAreaProvider>
+`;

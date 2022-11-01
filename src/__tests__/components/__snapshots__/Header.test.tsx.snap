@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`header renders correctly 1`] = `
+<RNCSafeAreaProvider
+  onInsetsChange={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      undefined,
+    ]
+  }
+>
+  <View
+    dataSet={{}}
+    style={
+      {
+        "alignItems": "center",
+        "display": "flex",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      dataSet={{}}
+      style={
+        {
+          "backgroundColor": undefined,
+          "color": "#171717",
+          "fontFamily": undefined,
+          "fontSize": 36,
+          "fontStyle": "normal",
+          "fontWeight": "700",
+          "letterSpacing": 0,
+          "lineHeight": 45,
+          "paddingBottom": 8,
+          "textAlign": "center",
+          "textDecorationLine": undefined,
+        }
+      }
+    >
+      Test title
+    </Text>
+    <View
+      aria-orientation="horizontal"
+      dataSet={{}}
+      style={
+        {
+          "backgroundColor": {
+            "100": "#cffafe",
+            "200": "#a5f3fc",
+            "300": "#67e8f9",
+            "400": "#22d3ee",
+            "50": "#ecfeff",
+            "500": "#06b6d4",
+            "600": "#0891b2",
+            "700": "#0e7490",
+            "800": "#155e75",
+            "900": "#164e63",
+          },
+          "borderRadius": 16,
+          "height": 4,
+          "width": "10%",
+        }
+      }
+      thickness="1"
+    />
+  </View>
+</RNCSafeAreaProvider>
+`;
