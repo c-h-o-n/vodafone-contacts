@@ -6,7 +6,7 @@ import ContactCard from '../components/ContactCard';
 import ErrorMessage from '../components/ErrorMessage';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import Initials from '../components/Initials';
+import InitialLetters from '../components/InitialLetters';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 import { useContact } from '../context/ContactsContext';
@@ -15,24 +15,26 @@ import useApi from '../hooks/useApi';
 
 import { HomeStackScreenProps } from '../navigation/types';
 import { Contact } from '../types/Contact';
-import { getInitialLeters } from '../utilities';
+import { getInitialLetters } from '../utilities/initialLetters';
 
 export default function ContactListScreen({ navigation }: HomeStackScreenProps<'ContactList'>) {
   const { getContacts } = useApi();
   const { contacts, addContact, getFilteredContacts } = useContact();
 
-  const [sortByInitial, setSortByInitial] = useState('');
-  const updateSelectedIntitial = (letter: string) => {
-    setSortByInitial(letter);
+  const [sortByInitialLetter, setSortByInitialLetter] = useState('');
+  const updateSelectedIntitialLetter = (letter: string) => {
+    setSortByInitialLetter(letter);
   };
 
-  const initials = useMemo(() => getInitialLeters(contacts), [contacts]);
-  const filteredContacts = useMemo(() => getFilteredContacts(sortByInitial), [sortByInitial, getFilteredContacts]);
+  const initials = useMemo(() => getInitialLetters(contacts), [contacts]);
+  const filteredContacts = useMemo(
+    () => getFilteredContacts(sortByInitialLetter),
+    [sortByInitialLetter, getFilteredContacts]
+  );
 
   const { isError, isLoading } = useQuery<Contact[], Error>(['contacts'], getContacts, {
     staleTime: Infinity, // to prevent automatic refetch
     onSuccess: (data) => {
-      console.log('data loaded');
       addContact(data);
     },
   });
@@ -64,7 +66,11 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
       </Box>
 
       <Box p={4}>
-        <Initials initials={initials} updateSelectedIntitial={updateSelectedIntitial} sortByInitial={sortByInitial} />
+        <InitialLetters
+          initials={initials}
+          updateSelected={updateSelectedIntitialLetter}
+          selected={sortByInitialLetter}
+        />
         <Divider h={1} bg={'gray.300'} rounded={'2xl'} />
       </Box>
 

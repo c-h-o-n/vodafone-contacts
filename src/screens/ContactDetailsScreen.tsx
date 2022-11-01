@@ -1,4 +1,4 @@
-import { Box, Button, Center, HStack, Image, Text, View, VStack } from 'native-base';
+import { Box, Button, Center, HStack, Image, ScrollView, Text, View, VStack } from 'native-base';
 import { useMemo } from 'react';
 
 import ErrorMessage from '../components/ErrorMessage';
@@ -42,43 +42,45 @@ export default function ContactDetailsScreen({ route, navigation }: HomeStackScr
       <Box pb={12}>
         <Header title={`${contact.name.first} ${contact.name.last}'s Profile`} />
       </Box>
+      <ScrollView _contentContainerStyle={{ flexGrow: 1 }}>
+        <Box flex={1} justifyContent={'space-between'}>
+          <VStack alignItems={'center'} space={8}>
+            <Image
+              source={{
+                uri: contact.imageUrl,
+              }}
+              alt={`${contact.name.first}-${contact.name.last}-avatar`}
+              size={'xl'}
+            />
 
-      <Box flex={1} justifyContent={'space-between'}>
-        <VStack alignItems={'center'} space={8}>
-          <Image
-            source={{
-              uri: contact.imageUrl,
-            }}
-            alt={`${contact.name.first}-${contact.name.last}-avatar`}
-            size={'xl'}
-          />
+            <VStack space={2} alignItems={'center'}>
+              <Text fontWeight={'bold'} textAlign={'center'}>
+                Email: <Text color={'primary'}>{contact.email}</Text>
+              </Text>
 
-          <VStack space={2} alignItems={'center'}>
-            <Text fontWeight={'bold'} textAlign={'center'}>
-              Email: <Text color={'primary'}>{contact.email}</Text>
-            </Text>
+              <Text fontWeight={'bold'} textAlign={'center'}>
+                Phone: {contact.phone}
+              </Text>
 
-            <Text fontWeight={'bold'} textAlign={'center'}>
-              Phone: {contact.phone}
-            </Text>
+              <Text fontWeight={'bold'} textAlign={'center'}>
+                Address: {contact.address}
+              </Text>
+            </VStack>
 
-            <Text fontWeight={'bold'} textAlign={'center'}>
-              Address: {contact.address}
-            </Text>
+            <HStack w={'100%'} justifyContent={'center'} space={10}>
+              <Button variant={'outline'} borderColor={'red.400'} colorScheme={'red'} onPress={onDelete}>
+                Delete
+              </Button>
+
+              <Button variant={'outline'} borderColor={'black'} colorScheme={'black'} onPress={onEdit}>
+                Edit
+              </Button>
+            </HStack>
           </VStack>
-          <HStack w={'100%'} justifyContent={'center'} space={10}>
-            <Button variant={'outline'} borderColor={'red.400'} colorScheme={'red'} onPress={onDelete}>
-              Delete
-            </Button>
 
-            <Button variant={'outline'} borderColor={'black'} colorScheme={'black'} onPress={onEdit}>
-              Edit
-            </Button>
-          </HStack>
-        </VStack>
-
-        <Footer />
-      </Box>
+          <Footer />
+        </Box>
+      </ScrollView>
     </View>
   );
 }

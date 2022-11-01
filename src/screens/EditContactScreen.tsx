@@ -49,7 +49,6 @@ export default function EditContactScreen({ route, navigation }: HomeStackScreen
     updateContact(contact.id, contactToUpdated);
 
     navigation.pop();
-    console.log('updated contact:', contactToUpdated);
   };
 
   return (
@@ -98,6 +97,7 @@ export default function EditContactScreen({ route, navigation }: HomeStackScreen
                 />
                 <FormControl.ErrorMessage>{errors.lastName?.message}</FormControl.ErrorMessage>
               </FormControl>
+
               {/* Email */}
               <FormControl isRequired isInvalid={'email' in errors}>
                 <FormControl.Label>Email</FormControl.Label>
@@ -121,6 +121,7 @@ export default function EditContactScreen({ route, navigation }: HomeStackScreen
                 />
                 <FormControl.ErrorMessage>{errors.email?.message}</FormControl.ErrorMessage>
               </FormControl>
+
               {/* Phone */}
               <FormControl isRequired isInvalid={'phone' in errors}>
                 <FormControl.Label>Phone</FormControl.Label>
@@ -142,6 +143,7 @@ export default function EditContactScreen({ route, navigation }: HomeStackScreen
                 <FormControl.ErrorMessage>{errors.phone?.message}</FormControl.ErrorMessage>
               </FormControl>
             </VStack>
+
             <Button onPress={handleSubmit(onSubmit)} variant={'outline'} borderColor={'black'} colorScheme="black">
               Save Contact
             </Button>

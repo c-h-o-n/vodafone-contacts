@@ -8,6 +8,7 @@ import { RootStackParamList } from '../navigation/types';
 
 export default function AddNewContactFAB() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   return (
     <Fab
       onPress={() => navigation.push('AddNewContact')}
@@ -16,6 +17,7 @@ export default function AddNewContactFAB() {
       size={16}
       icon={<Icon color="white" as={Entypo} name="plus" size="xl" />}
       bg={'primary'}
+      testID={'fab'}
     />
   );
 }
