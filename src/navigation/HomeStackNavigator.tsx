@@ -1,4 +1,4 @@
-import { createStackNavigator, TransitionPresets, TransitionSpecs } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 
 import { Box, View } from 'native-base';
 

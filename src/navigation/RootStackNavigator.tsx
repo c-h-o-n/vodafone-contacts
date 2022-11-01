@@ -1,4 +1,4 @@
-import { createStackNavigator, TransitionPresets, TransitionSpecs } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import { View } from 'native-base';
 
 import AddNewContactScreen from '../screens/AddNewContactScreen';
