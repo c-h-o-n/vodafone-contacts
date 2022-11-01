@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets, TransitionSpecs } from '@react-navigation/stack';
 import { View } from 'native-base';
 
 import AddNewContactScreen from '../screens/AddNewContactScreen';
@@ -14,7 +14,12 @@ const Stack = createStackNavigator<RootStackParamList>();
 export default function RootStackNavigator() {
   return (
     <View>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          headerShown: false,
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+        }}>
         <Stack.Screen name="Home" component={HomeStackNavigator} />
         <Stack.Screen name="AddNewContact" component={AddNewContactScreen} />
 

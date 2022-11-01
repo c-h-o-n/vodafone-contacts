@@ -1,4 +1,4 @@
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets, TransitionSpecs } from '@react-navigation/stack';
 
 import { Box, View } from 'native-base';
 
@@ -16,7 +16,12 @@ const Stack = createStackNavigator<HomeStackParamList>();
 export default function HomeStackNavigator() {
   return (
     <View>
-      <Stack.Navigator initialRouteName="ContactList" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        initialRouteName="ContactList"
+        screenOptions={{
+          headerShown: false,
+          ...TransitionPresets.SlideFromRightIOS,
+        }}>
         <Stack.Screen name="ContactList" component={ContactListScreen} />
         <Stack.Screen name="ContactDetails" component={ContactDetailsScreen} />
         <Stack.Screen name="EditContact" component={EditContactScreen} />

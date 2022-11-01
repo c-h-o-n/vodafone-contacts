@@ -9,7 +9,6 @@ import * as Linking from 'expo-linking';
 
 import { RootStackParamList } from './types';
 
-// TODO add full linking config
 const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.createURL('/')],
   config: {
@@ -19,6 +18,16 @@ const linking: LinkingOptions<RootStackParamList> = {
           ContactList: {
             screens: {
               ContactListScreen: '',
+            },
+          },
+          ContactDetails: {
+            screens: {
+              ContactDetailsScreen: ':id',
+            },
+          },
+          EditContact: {
+            screens: {
+              EditContactScreen: ':id/edit',
             },
           },
         },
