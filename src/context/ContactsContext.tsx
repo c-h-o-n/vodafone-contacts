@@ -5,7 +5,8 @@ import { Contact } from '../types/Contact';
 interface ContactContext {
   contacts: Contact[];
   loadContacts: (newContacts: Contact[]) => void;
-  addContact: (contact: Contact) => void;
+  addContact: (contact: Contact[]) => void;
+  getFilteredContacts: (filterBy: string) => Contact[];
   getContact: (id: string) => Contact | undefined;
   updateContact: (id: string, updatedContact: Partial<Contact>) => void;
   deleteContact: (id: string) => void;
@@ -29,8 +30,17 @@ export function ContactProvider({ children }: ContactProviderPops) {
       setContacts(newContacts);
     };
 
-    const addContact = (contact: Contact): void => {
-      setContacts((currentContacts) => [...currentContacts, contact]);
+    const addContact = (contact: Contact[]): void => {
+      setContacts((currentContacts) => [...currentContacts, ...contact]);
+    };
+
+    const getFilteredContacts = (filterBy: string) => {
+      return contacts.filter(
+        (contact) =>
+          !filterBy ||
+          contact.name.first[0].toUpperCase() === filterBy.toUpperCase() ||
+          contact.name.last[0].toUpperCase() === filterBy.toUpperCase()
+      );
     };
 
     const getContact = (id: string): Contact | undefined => {
@@ -52,6 +62,7 @@ export function ContactProvider({ children }: ContactProviderPops) {
       loadContacts,
       addContact,
       deleteContact,
+      getFilteredContacts,
       getContact,
       updateContact,
     };

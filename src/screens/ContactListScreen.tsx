@@ -19,7 +19,7 @@ import { getInitialLeters } from '../utilities';
 
 export default function ContactListScreen({ navigation }: HomeStackScreenProps<'ContactList'>) {
   const { getContacts } = useApi();
-  const { loadContacts, contacts } = useContact();
+  const { contacts, addContact, getFilteredContacts } = useContact();
 
   const [sortByInitial, setSortByInitial] = useState('');
   const updateSelectedIntitial = (letter: string) => {
@@ -27,12 +27,13 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
   };
 
   const initials = useMemo(() => getInitialLeters(contacts), [contacts]);
+  const filteredContacts = useMemo(() => getFilteredContacts(sortByInitial), [sortByInitial, getFilteredContacts]);
 
   const { isError, isLoading } = useQuery<Contact[], Error>(['contacts'], getContacts, {
     staleTime: Infinity, // to prevent automatic refetch
     onSuccess: (data) => {
       console.log('data loaded');
-      loadContacts(data);
+      addContact(data);
     },
   });
 
@@ -70,22 +71,15 @@ export default function ContactListScreen({ navigation }: HomeStackScreenProps<'
       <ScrollView p={2} w={'100%'} _contentContainerStyle={{ flexGrow: 1 }}>
         <Box flex={1} justifyContent={'space-between'}>
           <VStack space={8}>
-            {contacts
-              .filter(
-                (contact) =>
-                  !sortByInitial ||
-                  contact.name.last[0].toUpperCase() === sortByInitial.toUpperCase() ||
-                  contact.name.first[0].toUpperCase() === sortByInitial.toUpperCase()
-              )
-              .map((contact) => (
-                <Pressable
-                  key={contact.id}
-                  onPress={() => {
-                    navigation.push('ContactDetails', { id: contact.id });
-                  }}>
-                  <ContactCard contact={contact} />
-                </Pressable>
-              ))}
+            {filteredContacts.map((contact) => (
+              <Pressable
+                key={contact.id}
+                onPress={() => {
+                  navigation.push('ContactDetails', { id: contact.id });
+                }}>
+                <ContactCard contact={contact} />
+              </Pressable>
+            ))}
           </VStack>
 
           <Footer />

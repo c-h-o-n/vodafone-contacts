@@ -37,7 +37,7 @@ export default function EditContactScreen({ route, navigation }: HomeStackScreen
   });
 
   const onSubmit: SubmitHandler<FormInput> = (data) => {
-    const updatedContact: Partial<Contact> = {
+    const contactToUpdated: Partial<Contact> = {
       name: {
         first: data.firstName,
         last: data.lastName,
@@ -46,10 +46,10 @@ export default function EditContactScreen({ route, navigation }: HomeStackScreen
       phone: data.phone,
     };
 
-    updateContact(contact.id, updatedContact);
+    updateContact(contact.id, contactToUpdated);
 
     navigation.pop();
-    console.log('updated contact:', updatedContact);
+    console.log('updated contact:', contactToUpdated);
   };
 
   return (

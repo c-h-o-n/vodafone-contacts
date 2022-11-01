@@ -30,7 +30,7 @@ export default function AddNewContactScreen({ navigation }: RootStackScreenProps
   } = useForm<FormInput>();
 
   const onSubmit: SubmitHandler<FormInput> = (data) => {
-    const newContact: Contact = {
+    const contactToAdd: Contact = {
       id: uuidv4(),
       imageUrl: 'https://cdn.vodafone.co.uk/en/assets/images/large2X/IMG_Tech_Team_Tobi.jpg',
 
@@ -43,9 +43,7 @@ export default function AddNewContactScreen({ navigation }: RootStackScreenProps
       address: data.address,
     };
 
-    addContact(newContact);
-
-    console.log('new contact:', newContact);
+    addContact([contactToAdd]);
     navigation.pop();
   };
   return (
