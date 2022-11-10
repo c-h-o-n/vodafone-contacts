@@ -2,7 +2,7 @@
 
 ## Target
 
-Project only targets android currently.
+Project only targets android.
 
 ## Scripts
 
